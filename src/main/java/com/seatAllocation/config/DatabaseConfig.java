@@ -34,6 +34,9 @@ public class DatabaseConfig {
     @Value("${spring.datasource.password}")
     private String password;
 
+    @Value("${spring.jpa.hibernate.naming.physical-strategy}")
+    private String physicalNamingStrategy;
+
     @Bean
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -49,7 +52,7 @@ public class DatabaseConfig {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
         em.setPackagesToScan(new String[] {"com.seatAllocation.movie"});
-        JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
         em.setJpaProperties(additionalProperties());
         return em;
@@ -71,6 +74,7 @@ public class DatabaseConfig {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", "none");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+        properties.setProperty("hibernate.physical_naming_strategy", physicalNamingStrategy);
         return properties;
     }
 }

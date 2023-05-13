@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "movie_info")
-//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 public class Movie {
     @Id
@@ -24,12 +23,16 @@ public class Movie {
 
     private String place;
 
+    //@Column(name = "movie_date")
     private String movieDate;
 
+    //@Column(name = "movie_time")
     private String movieTime;
 
+    //@Column(name = "manager_name")
     private String managerName;
 
+    //@Column(name = "manager_tel")
     private String managerTel;
 
     private int likes;

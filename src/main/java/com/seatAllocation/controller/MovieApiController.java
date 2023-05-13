@@ -8,13 +8,15 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.OPTIONS})
 public class MovieApiController {
     private final MovieService movieService;
 
     // 영화 생성
     @PostMapping("/create")
-    public Long createMovie(@RequestBody final MovieRequestDto request) {
-        return movieService.save(request);
+    public Long createMovie(@RequestBody final MovieRequestDto movieData) {
+
+        return movieService.create(movieData);
     }
 
     // 영화 수정

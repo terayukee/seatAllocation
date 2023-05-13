@@ -14,7 +14,7 @@ public class MovieService {
 
     // 영화 생성
     @Transactional
-    public Long save(final MovieRequestDto request) {
+    public Long create(final MovieRequestDto request) {
 
         Movie entity = movieRepository.save(request.toEntity());
         return entity.getId();
